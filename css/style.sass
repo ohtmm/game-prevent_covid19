@@ -1,0 +1,150 @@
+body
+    margin: 0
+    background-image: url(./../images/bg.png)
+
+.sr-only
+    text-indent: -9999px
+
+button
+    border: none
+    outline: none
+    padding: 0
+    display: block
+    text-indent: -9999px
+    background-color: transparent
+
+#wrap
+    position: relative
+    width: 1000px
+    height: 900px
+    margin: 0 auto
+    background-image: url(./../images/bg_basic.png)
+    background-repeat: no-repeat
+
+.game
+    position: absolute
+    left: 50px
+    top: 220px
+    width: 900px
+    height: 582px
+
+    >.userGauge
+        position: absolute
+        top: 20px
+        left: 20px
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 280px
+        height: 44px
+        background-image: url(./../images/gauge_logo.png)
+        background-repeat: no-repeat
+        >.gaugeBar_empty
+            display: block
+            width: 230px
+            height: 19px
+            margin-left: 38px
+            text-indent: -9999px
+            background-image: url(./../images/gauge_empty.png)
+
+        >.gaugeBar_full
+            position: absolute
+            left: 43px
+            display: block
+            width: 200px
+            height: 19px
+            text-indent: -9999px
+            background-image: url(./../images/gauge_full.png)
+            border-radius: 10px
+
+    >.timer
+        position: absolute
+        right: 20px
+        top: 20px
+        width: 100px
+        height: 50px
+        font-size: 40px
+        font-weight: 800
+        color: #fff
+    >.btnBox
+        position: absolute
+        right: 30px
+        bottom: 30px
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 111px
+        height: 52px
+        >.start
+            position: absolute
+            width: 111px
+            height: 52px
+            background-image: url(./../images/btn_start.png)
+        >.play
+            visibility: hidden
+            position: absolute
+            width: 37px
+            height: 37px
+            background-image: url(./../images/btn_pause.png)
+    >.playBox
+        position: absolute
+        top: 80px
+        left: 50px
+        width: 800px
+        height: 440px
+    >.countBox
+        position: absolute
+        left: 20px
+        bottom: 10px
+        display: flex
+        flex-flow: column
+        align-items: center
+        font-size: 16px
+        color: #fff
+        font-weight: 600
+        >.count
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 56px
+            height: 54px
+            padding: 10px
+            font-size: 32px
+            color: #fff
+            font-weight: 800
+            background-image: url(./../images/count.png)
+            background-repeat: no-repeat
+            background-position: center center
+
+    >.popUpBox
+        visibility: hidden
+        position: absolute
+        left: 150px
+        top: 150px
+        width: 600px
+        height: 300px
+        background-color: #f1d04699
+        border-radius: 20px
+        border: 10px solid #f1d046
+        >.popUpMsg
+            display: block
+            margin: 50px auto
+            font-size: 32px
+            line-height: 1.5
+            color: #fff
+            font-weight: 600
+            text-align: center
+    >.reactIconBox
+        visibility: hidden
+footer>address
+        position: absolute
+        top: 850px
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 1000px
+        height: 80px
+        font-size: 20px
+        font-style: normal
+        font-weight: 600
+        color: #fff

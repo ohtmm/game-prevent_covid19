@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./images/virus.png">
+    <script src="./js/main.js" defer></script>
+    <title>Let's prevent COVID-19 together</title>
+</head>
+<body>
+    <div id="wrap">
+        <header class="banner">
+            <h1 class="sr-only">코로나 예방 함께해요! </h1>
+        </header>
+
+        <section class="game">
+            <!-- 유저 게이지 -->
+            <div class="userGauge">
+                <span class="gaugeBar_empty">유저 게이지 바</span>
+                <span class="gaugeBar_full">유저 게이지</span>
+            </div>
+
+            <!-- 타이머 -->
+            <div class="timer"> 0: 20
+            </div>
+
+            <!-- 버튼 -->
+            <div class="btnBox">
+                <button class="start">시작</button>
+                <button class="pause">일시 정지</button>
+            </div>
+
+            <!-- 이미지 박스 - 마스크 사람 -->
+            <div class="playBox">
+                <img class="onMask onMask1" src="./images/mask_o_1.png" alt="on-mask"> </img>
+                <img class="onMask onMask2" src="./images/mask_o_2.png" alt="on-mask"> </img>
+                <img class="onMask onMask3" src="./images/mask_o_3.png" alt="on-mask""> </img>
+                <img class="offMask offMask1" src="./images/mask_x_1.png" alt="off-mask"></img>
+                <img class="offMask offMask2" src="./images/mask_x_2.png" alt="off-mask"></img>
+                <img class="offMask offMask3" src="./images/mask_x_3.png" alt="off-mask"> </img>
+                <img class="cleanHands" src="./images/hands_clean.png" alt="clean-hands"> </img>
+                <img class="dirtyHands" src="./images/hands_dirty.png" alt="dirty-hands"></img>
+            </div>
+
+            <div class="countBox">
+                <span class="countInfo">코로나 예방 동참</span>
+                <span class="count">0</span>
+            </div>
+
+            <div class="popUpBox">
+                <span class="popUpMsg">포기하지 마세요 ! <br /> 끝까지 코로나 예방에 동참해주세요 </span>
+                <button class="play">재시작</button>
+            </div>
+
+            <div class="reactIconBox">
+                <img class="virusIcon" src="./images/virus.png" alt="virus"></img>
+                <img class="cleanIcon" src="./images/clean.png" alt="clean">
+            </div>
+        </section>
+
+        <footer>
+            <address> MADE BY EUNJI KIM & JIYOUNG CHOI</address>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+body {
+  margin: 0;
+  background-image: url(./../images/bg.png);
+}
+
+.sr-only {
+  text-indent: -9999px;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  display: block;
+  text-indent: -9999px;
+  background-color: transparent;
+}
+
+#wrap {
+  position: relative;
+  width: 1000px;
+  height: 900px;
+  margin: 0 auto;
+  background-image: url(./../images/bg_basic.png);
+  background-repeat: no-repeat;
+}
+
+.game {
+  position: absolute;
+  left: 50px;
+  top: 220px;
+  width: 900px;
+  height: 582px;
+}
+.game > .userGauge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 44px;
+  background-image: url(./../images/gauge_logo.png);
+  background-repeat: no-repeat;
+}
+.game > .userGauge > .gaugeBar_empty {
+  display: block;
+  width: 230px;
+  height: 19px;
+  margin-left: 38px;
+  text-indent: -9999px;
+  background-image: url(./../images/gauge_empty.png);
+}
+.game > .userGauge > .gaugeBar_full {
+  position: absolute;
+  left: 43px;
+  display: block;
+  width: 200px;
+  height: 19px;
+  text-indent: -9999px;
+  background-image: url(./../images/gauge_full.png);
+  border-radius: 10px;
+}
+.game > .timer {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 100px;
+  height: 50px;
+  font-size: 40px;
+  font-weight: 800;
+  color: #fff;
+}
+.game > .btnBox {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 111px;
+  height: 52px;
+}
+.game > .btnBox > .start {
+  position: absolute;
+  width: 111px;
+  height: 52px;
+  background-image: url(./../images/btn_start.png);
+}
+.game > .btnBox > .play {
+  visibility: hidden;
+  position: absolute;
+  width: 37px;
+  height: 37px;
+  background-image: url(./../images/btn_pause.png);
+}
+.game > .playBox {
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  width: 800px;
+  height: 440px;
+}
+.game > .countBox {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+}
+.game > .countBox > .count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 54px;
+  padding: 10px;
+  font-size: 32px;
+  color: #fff;
+  font-weight: 800;
+  background-image: url(./../images/count.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.game > .popUpBox {
+  visibility: hidden;
+  position: absolute;
+  left: 150px;
+  top: 150px;
+  width: 600px;
+  height: 300px;
+  background-color: rgba(241, 208, 70, 0.6);
+  border-radius: 20px;
+  border: 10px solid #f1d046;
+}
+.game > .popUpBox > .popUpMsg {
+  display: block;
+  margin: 50px auto;
+  font-size: 32px;
+  line-height: 1.5;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+.game > .reactIconBox {
+  visibility: hidden;
+}
+
+footer > address {
+  position: absolute;
+  top: 850px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+  height: 80px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+}/*# sourceMappingURL=style.css.map */
