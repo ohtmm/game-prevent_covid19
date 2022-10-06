@@ -4,6 +4,10 @@ body
 
 .sr-only
     text-indent: -9999px
+.show
+    visibility: visible
+.hide
+    visibility: hide
 
 button
     border: none
@@ -56,12 +60,11 @@ button
             text-indent: -9999px
             background-image: url(./../images/gauge_full.png)
             border-radius: 10px
-
     >.timer
         position: absolute
         right: 20px
         top: 20px
-        width: 100px
+        width: 120px
         height: 50px
         font-size: 40px
         font-weight: 800
@@ -92,6 +95,12 @@ button
         left: 50px
         width: 800px
         height: 440px
+        >img
+            visibility: hidden
+            position: absolute
+            left: 0
+            top: 0
+
     >.countBox
         position: absolute
         left: 20px

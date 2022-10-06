@@ -1,4 +1,4 @@
-const clickMsgs = [
+const msgs = [
   '참 잘했어요 :)',
   '코로나 바이러스가 금방 사라질 것 같아요!',
   '함께 하는 시민 멋져요 !',
@@ -10,6 +10,8 @@ const clickMsgs = [
 ];
 
 const timerNum = document.querySelector('.timer');
+const icons = document.querySelectorAll('.playBox>img');
+const playBox = document.querySelector('.playBox');
 
 const TIME_LIMIT = 20;
 
@@ -24,6 +26,49 @@ function setTimer(sec) {
     }
   }, 1000);
 }
+
+const pickedIcons = [];
+function randomIcons() {
+  for (let i = 0; i < 4; i++) {
+    const randomNum = Math.floor(Math.random() * 7);
+    pickedIcons.push({
+      img: icons[randomNum],
+      text: msgs[randomNum],
+      idx: randomNum,
+    });
+  }
+}
+
+console.log(playBox.getBoundingClientRect());
+// playBox 내 아이콘 배치 정보
+// (left: 0, top: 0) (right: 800-137=663, bottom: 440-150=290)
+// x좌표 : 0~763
+// y좌표 : 0~612
+
+const pickedCoords = [];
+function randomCoords() {
+  for (i = 0; i < 4; i++) {
+    const x = Math.floor(Math.random() * 663);
+    const y = Math.floor(Math.random() * 290);
+    pickedCoords.push({
+      left: x,
+      top: y,
+    });
+  }
+}
+
+function scatterIcons() {
+  randomIcons();
+  randomCoords();
+  pickedIcons.forEach((icon, idx) => {
+    const $iconImg = icon.img;
+    const $iconX = pickedCoords[idx].left;
+    const $iconY = pickedCoords[idx].top;
+    $iconImg.style.transform = `translate(${$iconX}px, ${$iconY}px)`;
+    $iconImg.style.visibility = 'visible';
+  });
+}
+scatterIcons();
 
 function startGame(sec) {
   setTimeout(() => {
