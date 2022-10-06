@@ -46,26 +46,29 @@ button {
   left: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 280px;
   height: 44px;
   background-image: url(./../images/gauge_logo.png);
   background-repeat: no-repeat;
 }
 .game > .userGauge > .gaugeBar_empty {
-  display: block;
+  position: relative;
+  display: flex;
+  justify-content: left;
   width: 230px;
   height: 19px;
-  margin-left: 38px;
+  margin-left: 43px;
   text-indent: -9999px;
   background-image: url(./../images/gauge_empty.png);
 }
-.game > .userGauge > .gaugeBar_full {
+.game > .userGauge > .gaugeBar_empty > .gaugeBar_full {
   position: absolute;
-  left: 43px;
+  left: 0px;
+  top: 0;
   display: block;
-  width: 200px;
+  width: 230px;
   height: 19px;
+  transform: scaleX(1);
   text-indent: -9999px;
   background-image: url(./../images/gauge_full.png);
   border-radius: 10px;
@@ -115,7 +118,6 @@ button {
   height: 440px;
 }
 .game > .playBox > img {
-  visibility: hidden;
   position: absolute;
   left: 0;
   top: 0;

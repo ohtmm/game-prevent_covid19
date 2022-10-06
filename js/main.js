@@ -2,11 +2,22 @@ const msgs = [
   '참 잘했어요 :)',
   '코로나 바이러스가 금방 사라질 것 같아요!',
   '함께 하는 시민 멋져요 !',
+  '손까지 깨끗해요 :)',
   '턱스크는 안돼요!',
   '코만 가리다니 No No',
   '코까지 잘 가려주세요!',
-  '손까지 깨끗해요 :)',
   '바이러스가 손에 남아 있을지도 몰라요',
+];
+
+const imgSrcs = [
+  './images/mask_o_1.png',
+  './images/mask_o_2.png',
+  './images/mask_o_3.png',
+  './images/hands_clean.png',
+  './images/mask_x_1.png',
+  './images/mask_x_2.png',
+  './images/mask_x_3.png',
+  './images/hands_dirty.png',
 ];
 
 const timerNum = document.querySelector('.timer');
@@ -16,8 +27,12 @@ const startBtn = document.querySelector('.start');
 const playBtn = document.querySelector('.play');
 const virusIcon = document.querySelector('.virusIcon');
 const cleanIcon = document.querySelector('.cleanIcon');
+const count = document.querySelector('.count');
+const gauge = document.querySelector('.gaugeBar_full');
 
-const TIME_LIMIT = 20;
+const TIME_LIMIT = 5;
+let COUNT_NUM = 0;
+let GAUGE_NUM = 0;
 
 function setTimer(sec) {
   timerNum.textContent = `0 : ${sec}`;
@@ -33,13 +48,19 @@ function setTimer(sec) {
 
 let pickedIcons = [];
 function randomIcons() {
-  if (pickedIcons.length === 4) {
-    pickedIcons = [];
-  }
+  pickedIcons = [];
   for (let i = 0; i < 4; i++) {
     const randomNum = Math.floor(Math.random() * 7);
+    const randomIcon = document.createElement('img');
+    randomIcon.setAttribute('src', imgSrcs[randomNum]);
+    if (randomNum < 3) {
+      randomIcon.setAttribute('class', 'onMask');
+    } else if (randomNum === 3) {
+      randomIcon.setAttribute('class', 'cleanHands');
+    }
+    playBox.appendChild(randomIcon);
     pickedIcons.push({
-      img: icons[randomNum],
+      img: randomIcon,
       text: msgs[randomNum],
       idx: randomNum,
     });
@@ -52,8 +73,9 @@ console.log(playBox.getBoundingClientRect());
 // x좌표 : 0~763
 // y좌표 : 0~612
 
-const pickedCoords = [];
+let pickedCoords = [];
 function randomCoords() {
+  pickedCoords = [];
   for (i = 0; i < 4; i++) {
     const x = Math.floor(Math.random() * 663);
     const y = Math.floor(Math.random() * 290);
@@ -71,18 +93,27 @@ function show(item) {
   item.style.visibility = 'visible';
 }
 
-function handleClick(target) {
-  target.addEventListener('click', (evt) => {
-    target.style.visibility = 'hidden';
+function handleClick(targetObj) {
+  const { img, text, idx } = targetObj;
+  console.log(targetObj);
+  img.addEventListener('click', (evt) => {
+    hide(img);
     if (
-      target.classList.contains('onMask') ||
-      target.classList.contains('cleanHands')
+      img.classList.contains('onMask') ||
+      img.classList.contains('cleanHands')
     ) {
+      COUNT_NUM++;
+      count.textContent = COUNT_NUM;
       setTimeout(() => {
         hide(cleanIcon);
       }, 300);
       show(cleanIcon);
     } else {
+      GAUGE_NUM++;
+      gauge.style.transform = `scaleX(${1 - 0.1 * GAUGE_NUM})`;
+      gauge.style.left = `${-12 * GAUGE_NUM}px`;
+      if (GAUGE_NUM === 11) {
+      }
       setTimeout(() => {
         hide(virusIcon);
       }, 300);
@@ -94,34 +125,37 @@ function handleClick(target) {
 function scatterIcons() {
   randomIcons();
   randomCoords();
-  pickedIcons.forEach((icon, idx) => {
-    const $iconImg = icon.img;
-    const $iconX = pickedCoords[idx].left;
-    const $iconY = pickedCoords[idx].top;
-    $iconImg.style.transform = `translate(${$iconX}px, ${$iconY}px)`;
+  pickedIcons.forEach((iconObj, index) => {
+    const $iconImg = iconObj.img;
+    const $iconX = pickedCoords[index].left;
+    const $iconY = pickedCoords[index].top;
+    $iconImg.style.left = `${$iconX}px`;
+    $iconImg.style.top = `${$iconY}px`;
     show($iconImg);
-    handleClick($iconImg);
+    handleClick(iconObj);
     setTimeout(() => {
       hide($iconImg);
-    }, 2200);
+    }, 2100);
   });
 }
 
 function startGame(sec) {
   hide(startBtn);
   show(playBtn);
-  setTimeout(() => {
-    console.log('게임 끝');
-  }, sec * 1000);
+  scatterIcons();
   setTimer(sec);
 }
 
+function endGame() {}
+
 startBtn.addEventListener('click', () => {
   startGame(TIME_LIMIT);
-  scatterIcons();
-  setInterval(() => {
+  const scatterInterval = setInterval(() => {
     scatterIcons();
   }, 2500);
+  setTimeout(() => {
+    clearInterval(scatterInterval);
+  }, TIME_LIMIT * 1000);
 });
 
 /*
