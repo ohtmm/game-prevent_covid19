@@ -80,15 +80,19 @@ button
         height: 52px
         >.start
             position: absolute
+            display: block
             width: 111px
             height: 52px
             background-image: url(./../images/btn_start.png)
+            cursor: pointer
         >.play
-            visibility: hidden
             position: absolute
+            visibility: hidden
+            display: block
             width: 37px
             height: 37px
             background-image: url(./../images/btn_pause.png)
+            cursor: pointer
     >.playBox
         position: absolute
         top: 80px
@@ -144,16 +148,24 @@ button
             font-weight: 600
             text-align: center
     >.reactIconBox
-        visibility: hidden
-footer>address
         position: absolute
-        top: 850px
-        display: flex
-        align-items: center
-        justify-content: center
-        width: 1000px
-        height: 80px
-        font-size: 20px
-        font-style: normal
-        font-weight: 600
-        color: #fff
+        left: 30%
+        top: 30%
+        >.virusIcon
+            position: absolute
+            visibility: hidden
+        >.cleanIcon
+            position: absolute
+            visibility: hidden
+footer>address
+            position: absolute
+            top: 850px
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 1000px
+            height: 80px
+            font-size: 20px
+            font-style: normal
+            font-weight: 600
+            color: #fff

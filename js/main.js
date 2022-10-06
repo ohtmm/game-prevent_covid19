@@ -12,6 +12,10 @@ const msgs = [
 const timerNum = document.querySelector('.timer');
 const icons = document.querySelectorAll('.playBox>img');
 const playBox = document.querySelector('.playBox');
+const startBtn = document.querySelector('.start');
+const playBtn = document.querySelector('.play');
+const virusIcon = document.querySelector('.virusIcon');
+const cleanIcon = document.querySelector('.cleanIcon');
 
 const TIME_LIMIT = 20;
 
@@ -27,8 +31,11 @@ function setTimer(sec) {
   }, 1000);
 }
 
-const pickedIcons = [];
+let pickedIcons = [];
 function randomIcons() {
+  if (pickedIcons.length === 4) {
+    pickedIcons = [];
+  }
   for (let i = 0; i < 4; i++) {
     const randomNum = Math.floor(Math.random() * 7);
     pickedIcons.push({
@@ -57,6 +64,33 @@ function randomCoords() {
   }
 }
 
+function hide(item) {
+  item.style.visibility = 'hidden';
+}
+function show(item) {
+  item.style.visibility = 'visible';
+}
+
+function handleClick(target) {
+  target.addEventListener('click', (evt) => {
+    target.style.visibility = 'hidden';
+    if (
+      target.classList.contains('onMask') ||
+      target.classList.contains('cleanHands')
+    ) {
+      setTimeout(() => {
+        hide(cleanIcon);
+      }, 300);
+      show(cleanIcon);
+    } else {
+      setTimeout(() => {
+        hide(virusIcon);
+      }, 300);
+      show(virusIcon);
+    }
+  });
+}
+
 function scatterIcons() {
   randomIcons();
   randomCoords();
@@ -65,18 +99,30 @@ function scatterIcons() {
     const $iconX = pickedCoords[idx].left;
     const $iconY = pickedCoords[idx].top;
     $iconImg.style.transform = `translate(${$iconX}px, ${$iconY}px)`;
-    $iconImg.style.visibility = 'visible';
+    show($iconImg);
+    handleClick($iconImg);
+    setTimeout(() => {
+      hide($iconImg);
+    }, 2200);
   });
 }
-scatterIcons();
 
 function startGame(sec) {
+  hide(startBtn);
+  show(playBtn);
   setTimeout(() => {
     console.log('게임 끝');
   }, sec * 1000);
   setTimer(sec);
 }
-startGame(TIME_LIMIT);
+
+startBtn.addEventListener('click', () => {
+  startGame(TIME_LIMIT);
+  scatterIcons();
+  setInterval(() => {
+    scatterIcons();
+  }, 2500);
+});
 
 /*
  시작 세팅 

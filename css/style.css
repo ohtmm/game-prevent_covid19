@@ -92,16 +92,20 @@ button {
 }
 .game > .btnBox > .start {
   position: absolute;
+  display: block;
   width: 111px;
   height: 52px;
   background-image: url(./../images/btn_start.png);
+  cursor: pointer;
 }
 .game > .btnBox > .play {
-  visibility: hidden;
   position: absolute;
+  visibility: hidden;
+  display: block;
   width: 37px;
   height: 37px;
   background-image: url(./../images/btn_pause.png);
+  cursor: pointer;
 }
 .game > .playBox {
   position: absolute;
@@ -162,6 +166,16 @@ button {
   text-align: center;
 }
 .game > .reactIconBox {
+  position: absolute;
+  left: 30%;
+  top: 30%;
+}
+.game > .reactIconBox > .virusIcon {
+  position: absolute;
+  visibility: hidden;
+}
+.game > .reactIconBox > .cleanIcon {
+  position: absolute;
   visibility: hidden;
 }
 
