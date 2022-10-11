@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "SANGJUDajungdagam";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANGJUDajungdagam.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   margin: 0;
+  font-family: "SANGJUDajungdagam";
   background-image: url(./../images/bg.png);
 }
 
@@ -83,7 +90,7 @@ button {
   font-weight: 800;
   color: #fff;
 }
-.game > .btnBox {
+.game > .startBox {
   position: absolute;
   right: 30px;
   bottom: 30px;
@@ -93,7 +100,7 @@ button {
   width: 111px;
   height: 52px;
 }
-.game > .btnBox > .start {
+.game > .startBox > .start {
   position: absolute;
   display: block;
   width: 111px;
@@ -101,7 +108,7 @@ button {
   background-image: url(./../images/btn_start.png);
   cursor: pointer;
 }
-.game > .btnBox > .play {
+.game > .startBox > .play {
   position: absolute;
   visibility: hidden;
   display: block;
@@ -121,6 +128,7 @@ button {
   position: absolute;
   left: 0;
   top: 0;
+  cursor: pointer;
 }
 .game > .countBox {
   position: absolute;
@@ -167,6 +175,16 @@ button {
   font-weight: 600;
   text-align: center;
 }
+.game > .popUpBox > .reStartBtn {
+  position: absolute;
+  left: 40%;
+  display: block;
+  width: 111px;
+  height: 52px;
+  transform: scale(1.4);
+  background-image: url(./../images/btn_start.png);
+  cursor: pointer;
+}
 .game > .reactIconBox {
   position: absolute;
   left: 30%;
@@ -180,6 +198,13 @@ button {
   position: absolute;
   visibility: hidden;
 }
+.game > .msgBox {
+  position: absolute;
+  left: 12%;
+  bottom: 5%;
+  font-size: 32px;
+  color: #fff;
+}
 
 footer > address {
   position: absolute;
@@ -191,6 +216,5 @@ footer > address {
   height: 80px;
   font-size: 20px;
   font-style: normal;
-  font-weight: 600;
   color: #fff;
 }/*# sourceMappingURL=style.css.map */

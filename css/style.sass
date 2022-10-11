@@ -1,5 +1,12 @@
+@font-face
+    font-family: 'SANGJUDajungdagam'
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANGJUDajungdagam.woff') format('woff')
+    font-weight: normal
+    font-style: normal
+
 body
     margin: 0
+    font-family: 'SANGJUDajungdagam'
     background-image: url(./../images/bg.png)
 
 .sr-only
@@ -72,7 +79,7 @@ button
         font-size: 40px
         font-weight: 800
         color: #fff
-    >.btnBox
+    >.startBox
         position: absolute
         right: 30px
         bottom: 30px
@@ -106,6 +113,7 @@ button
             position: absolute
             left: 0
             top: 0
+            cursor: pointer
 
     >.countBox
         position: absolute
@@ -149,6 +157,15 @@ button
             color: #fff
             font-weight: 600
             text-align: center
+        >.reStartBtn
+            position: absolute
+            left: 40%
+            display: block
+            width: 111px
+            height: 52px
+            transform: scale(1.4)
+            background-image: url(./../images/btn_start.png)
+            cursor: pointer
     >.reactIconBox
         position: absolute
         left: 30%
@@ -159,6 +176,12 @@ button
         >.cleanIcon
             position: absolute
             visibility: hidden
+    >.msgBox
+        position: absolute
+        left: 12%
+        bottom: 5%
+        font-size: 32px
+        color: #fff
 footer>address
             position: absolute
             top: 850px
@@ -169,5 +192,4 @@ footer>address
             height: 80px
             font-size: 20px
             font-style: normal
-            font-weight: 600
             color: #fff
