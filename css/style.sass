@@ -4,9 +4,17 @@
     font-weight: normal
     font-style: normal
 
+@keyframes jump
+    0%
+        translate: 0 0
+
+    100%
+        translate: 0 0.2em
+
 body
     margin: 0
     font-family: 'SANGJUDajungdagam'
+    box-sizing: border-box
     background-image: url(./../images/bg.png)
 
 .sr-only
@@ -14,7 +22,7 @@ body
 .show
     visibility: visible
 .hide
-    visibility: hide
+    visibility: hidden
 
 button
     border: none
@@ -32,157 +40,179 @@ button
     background-image: url(./../images/bg_basic.png)
     background-repeat: no-repeat
 
-.game
-    position: absolute
-    left: 50px
-    top: 220px
-    width: 900px
-    height: 582px
-
-    >.userGauge
+    .game
         position: absolute
-        top: 20px
-        left: 20px
-        display: flex
-        align-items: center
-        width: 280px
-        height: 44px
-        background-image: url(./../images/gauge_logo.png)
-        background-repeat: no-repeat
-        >.gaugeBar_empty
-            position: relative
-            display: flex
-            justify-content: left
-            width: 230px
-            height: 19px
-            margin-left: 43px
-            text-indent: -9999px
-            background-image: url(./../images/gauge_empty.png)
-
-            >.gaugeBar_full
-                position: absolute
-                left: 0px
-                top: 0
-                display: block
-                width: 230px
-                height: 19px
-                transform: scaleX(1)
-                text-indent: -9999px
-                background-image: url(./../images/gauge_full.png)
-                border-radius: 10px
-    >.timer
-        position: absolute
-        right: 20px
-        top: 20px
-        width: 120px
-        height: 50px
-        font-size: 40px
-        font-weight: 800
-        color: #fff
-    >.startBox
-        position: absolute
-        right: 30px
-        bottom: 30px
-        display: flex
-        justify-content: center
-        align-items: center
-        width: 111px
-        height: 52px
-        >.start
-            position: absolute
-            display: block
-            width: 111px
-            height: 52px
-            background-image: url(./../images/btn_start.png)
-            cursor: pointer
-        >.play
-            position: absolute
-            visibility: hidden
-            display: block
-            width: 37px
-            height: 37px
-            background-image: url(./../images/btn_pause.png)
-            cursor: pointer
-    >.playBox
-        position: absolute
-        top: 80px
         left: 50px
-        width: 800px
-        height: 440px
-        >img
-            position: absolute
-            left: 0
-            top: 0
-            cursor: pointer
+        top: 220px
+        width: 900px
+        height: 582px
 
-    >.countBox
-        position: absolute
-        left: 20px
-        bottom: 10px
-        display: flex
-        flex-flow: column
-        align-items: center
-        font-size: 16px
-        color: #fff
-        font-weight: 600
-        >.count
+        >.userGauge
+            position: absolute
+            top: 20px
+            left: 20px
             display: flex
             align-items: center
-            justify-content: center
-            width: 56px
-            height: 54px
-            padding: 10px
-            font-size: 32px
-            color: #fff
-            font-weight: 800
-            background-image: url(./../images/count.png)
+            width: 280px
+            height: 44px
+            background-image: url(./../images/gauge_logo.png)
             background-repeat: no-repeat
-            background-position: center center
+            >.gaugeBar_empty
+                position: relative
+                display: flex
+                justify-content: left
+                width: 230px
+                height: 19px
+                margin-left: 43px
+                text-indent: -9999px
+                background-image: url(./../images/gauge_empty.png)
 
-    >.popUpBox
-        visibility: hidden
-        position: absolute
-        left: 150px
-        top: 150px
-        width: 600px
-        height: 300px
-        background-color: #f1d04699
-        border-radius: 20px
-        border: 10px solid #f1d046
-        >.popUpMsg
-            display: block
-            margin: 50px auto
-            font-size: 32px
-            line-height: 1.5
-            color: #fff
-            font-weight: 600
-            text-align: center
-        >.reStartBtn
+                >.gaugeBar_full
+                    position: absolute
+                    left: 0px
+                    top: 0
+                    display: block
+                    width: 230px
+                    height: 19px
+                    transform: scaleX(1)
+                    text-indent: -9999px
+                    background-image: url(./../images/gauge_full.png)
+                    border-radius: 10px
+        >.timer
             position: absolute
-            left: 40%
-            display: block
+            right: 20px
+            top: 20px
+            width: 120px
+            height: 50px
+            font-size: 40px
+            font-weight: 800
+            color: #fff
+        >.startBox
+            position: absolute
+            right: 30px
+            bottom: 30px
+            display: flex
+            justify-content: center
+            align-items: center
             width: 111px
             height: 52px
-            transform: scale(1.4)
-            background-image: url(./../images/btn_start.png)
-            cursor: pointer
-    >.reactIconBox
-        position: absolute
-        left: 30%
-        top: 30%
-        >.virusIcon
+
+            .modal
+                position: absolute
+                left: -6em
+                top: -4em
+                width: 13rem
+                height: 2rem
+                animation: jump .2s .2s infinite alternate
+
+                .modal-input
+                    width: 13em
+                    height: 2em
+                    padding: 0.2em
+                    font-family: 'SANGJUDajungdagam'
+                    font-size: 20px
+                    border-radius: 0.5em
+                    background-color: #fff
+                    border: 2px solid #2872e3
+                    outline: 3px solid #b2f1e8
+
+            >.start
+                position: absolute
+                display: block
+                width: 111px
+                height: 52px
+                background-image: url(./../images/btn_start.png)
+                animation: jump .2s .2s infinite alternate
+                cursor: pointer
+            >.pause
+                position: absolute
+                visibility: hidden
+                display: block
+                width: 37px
+                height: 37px
+                background-image: url(./../images/btn_pause.png)
+                cursor: pointer
+        >.playBox
             position: absolute
-            visibility: hidden
-        >.cleanIcon
+            top: 80px
+            left: 50px
+            width: 800px
+            height: 440px
+            >img
+                position: absolute
+                left: 0
+                top: 0
+                cursor: pointer
+
+        >.countBox
             position: absolute
+            left: 20px
+            bottom: 10px
+            display: flex
+            flex-flow: column
+            align-items: center
+            font-size: 16px
+            color: #fff
+            font-weight: 600
+            >.count
+                display: flex
+                align-items: center
+                justify-content: center
+                width: 56px
+                height: 54px
+                padding: 10px
+                font-size: 32px
+                color: #fff
+                font-weight: 800
+                background-image: url(./../images/count.png)
+                background-repeat: no-repeat
+                background-position: center center
+
+        >.popUpBox
             visibility: hidden
-    >.msgBox
-        position: absolute
-        left: 12%
-        bottom: 5%
-        font-size: 32px
-        color: #fff
-footer>address
+            position: absolute
+            left: 150px
+            top: 150px
+            width: 600px
+            height: 300px
+            background-color: #f1d04699
+            border-radius: 20px
+            border: 10px solid #f1d046
+            >.popUpMsg
+                display: block
+                margin: 50px auto
+                font-size: 32px
+                line-height: 1.5
+                color: #fff
+                font-weight: 600
+                text-align: center
+            >.reStartBtn
+                position: absolute
+                left: 40%
+                display: block
+                width: 111px
+                height: 52px
+                transform: scale(1.4)
+                background-image: url(./../images/btn_start.png)
+                cursor: pointer
+        >.reactIconBox
+            position: absolute
+            left: 30%
+            top: 30%
+            >.virusIcon
+                position: absolute
+                visibility: hidden
+            >.cleanIcon
+                position: absolute
+                visibility: hidden
+        >.msgBox
+            position: absolute
+            left: 12%
+            bottom: 5%
+            font-size: 32px
+            color: #fff
+
+    footer>address
             position: absolute
             top: 850px
             display: flex
@@ -193,3 +223,47 @@ footer>address
             font-size: 20px
             font-style: normal
             color: #fff
+
+#popUpInfo
+    position: absolute
+    left: 0
+    top: 0
+    display: flex
+    justify-content: center
+    flex-direction: column
+    width: 100%
+    height: 150%
+    background-color: #b2f1e8
+
+    .popUpInfo-content
+        position: relative
+        width: 1000px
+        height: 932px
+        margin: 0 auto
+        text-indent: -9999px
+        background-image: url(./../images/main.png)
+        background-repeat: no-repeat
+        background-size: contain
+        background-position: center center
+        background-color: #b2f1e8
+
+        button.popUpInfo-btn-enter
+            position: absolute
+            left: 400px
+            bottom: 10px
+            border: none
+            background: none
+            outline: none
+            display: block
+            width: 200px
+            height: 100px
+            cursor: pointer
+    .popUpInfo-footer
+        width: 100%
+        height: 148px
+        text-indent: -9999px
+        background-image: url(./../images/footer.png)
+        background-repeat: no-repeat
+        background-size: contain
+        background-position: 300px center
+        background-color: #2872e3

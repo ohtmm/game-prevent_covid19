@@ -20,35 +20,46 @@ const imgSrcs = [
   './images/hands_dirty.png',
 ];
 
+const btnEnter = document.querySelector('.popUpInfo-btn-enter');
 const timerNum = document.querySelector('.timer');
 const icons = document.querySelectorAll('.playBox>img');
 const playBox = document.querySelector('.playBox');
 const msgBox = document.querySelector('.msgBox');
 const popUpBox = document.querySelector('.popUpBox');
 const startBtn = document.querySelector('.start');
-const playBtn = document.querySelector('.play');
+const pauseBtn = document.querySelector('.pause');
 const reStartBtn = document.querySelector('.reStartBtn');
 const virusIcon = document.querySelector('.virusIcon');
 const cleanIcon = document.querySelector('.cleanIcon');
 const count = document.querySelector('.count');
 const gauge = document.querySelector('.gaugeBar_full');
+const main = document.getElementById('wrap');
+const popUpInfo = document.getElementById('popUpInfo');
+const userInput = document.querySelector('.modal-input');
 
+const bgSound = new Audio('./../sound/bg.mp3');
+const onMaskSound = new Audio('./../sound/onMask.mp3');
+const offMaskSound = new Audio('./../sound/offMask.mp3');
+const popUpSound = new Audio('./../sound/popUp.mp3');
 
-const userLimit = prompt('반가워요! 얼마동안 게임을 즐기고 싶나요?(초 단위로 입력해주세요!)', 20);
-const TIME_LIMIT = userLimit;
+// 게임 안내
+btnEnter.addEventListener('click', () => {
+  popUpInfo.style.display = 'none';
+});
 
+const TIME_LIMIT = 20;
 
-let COUNT_NUM = 0;
-let GAUGE_NUM = 0;
+let countNum = 0;
+let gaugeNum = 0;
 
 function setTimer(sec) {
   timerNum.textContent = `0 : ${sec}`;
   const intervalTime = setInterval(() => {
     sec--;
     timerNum.textContent = `0 : ${sec}`;
-    if (sec === 0 || GAUGE_NUM === 5) {
+    if (sec === 0 || gaugeNum === 5) {
       clearInterval(intervalTime);
-      show(popUpBox);
+      showIcon(popUpBox);
       return;
     }
   }, 1000);
@@ -73,7 +84,6 @@ function randomIcons() {
       idx: randomNum,
     });
   }
-  
 }
 
 // console.log(playBox.getBoundingClientRect());
@@ -96,25 +106,25 @@ function randomCoords() {
 }
 
 function removeAllIcons() {
-  while(playBox.firstChild){
+  while (playBox.firstChild) {
     playBox.removeChild(playBox.firstChild);
   }
 }
 
-function hide(item) {
+function hideIcon(item) {
   item.style.visibility = 'hidden';
 }
-function show(item) {
+function showIcon(item) {
   item.style.visibility = 'visible';
 }
 
-function createMsg (text, idx) {
+function createMsg(text, idx) {
   const msg = document.createElement('span');
-    msg.textContent= text;
-    msgBox.appendChild(msg);
-    if(idx >3){
-      msg.style.color = 'red';
-    }
+  msg.textContent = text;
+  msgBox.appendChild(msg);
+  if (idx > 3) {
+    msg.style.color = 'red';
+  }
 }
 
 function handleClick(targetObj) {
@@ -126,30 +136,30 @@ function handleClick(targetObj) {
       img.classList.contains('onMask') ||
       img.classList.contains('cleanHands')
     ) {
-      COUNT_NUM++;
-      count.textContent = COUNT_NUM;
+      onMaskSound.play();
+      // score 증가
+      countNum++;
+      count.textContent = countNum;
       setTimeout(() => {
-        hide(cleanIcon);
+        hideIcon(cleanIcon);
         msgBox.removeChild(msgBox.lastElementChild);
       }, 300);
-      show(cleanIcon);
+      showIcon(cleanIcon);
     } else {
-      GAUGE_NUM++;
-      if (GAUGE_NUM < 6) {
-        gauge.style.transform = `scaleX(${1 - 0.2 * GAUGE_NUM})`;
-        gauge.style.left = `${-24 * GAUGE_NUM}px`;
+      // 게이지 감소
+      offMaskSound.play();
+      gaugeNum++;
+      if (gaugeNum < 6) {
+        gauge.style.transform = `scaleX(${1 - 0.2 * gaugeNum})`;
+        gauge.style.left = `${-24 * gaugeNum}px`;
       } else {
-        GAUGE_NUM = 5;
-        clearInterval(scatterInterval);
-        clearTimeout(timeOutKey);
-        removeAllIcons();
-        show(popUpBox);
+        gaugeNum = 5;
       }
       setTimeout(() => {
-        hide(virusIcon);
+        hideIcon(virusIcon);
         msgBox.removeChild(msgBox.lastElementChild);
       }, 300);
-      show(virusIcon);
+      showIcon(virusIcon);
     }
   });
 }
@@ -163,53 +173,79 @@ function scatterIcons() {
     const $iconY = createdCoords[index].top;
     $iconImg.style.left = `${$iconX}px`;
     $iconImg.style.top = `${$iconY}px`;
-    show($iconImg);
+    showIcon($iconImg);
     handleClick(iconObj);
     setTimeout(() => {
       removeAllIcons();
-    }, 2400);
+    }, 1900);
   });
 }
 
 function startGame(sec) {
-  hide(startBtn);
-  show(playBtn);
+  hideIcon(startBtn);
+  // showIcon(pauseBtn);
   scatterIcons();
   setTimer(sec);
+  bgSound.play();
 }
 
-function reset() {
-  GAUGE_NUM = 0;
-  gauge.style.transform = `scaleX(${1 - 0.2 * GAUGE_NUM})`;
-  gauge.style.left = `${-24 * GAUGE_NUM}px`;
-  COUNT_NUM = 0;
-  count.textContent = COUNT_NUM;
-  show(startBtn);
+function resetGame() {
+  gaugeNum = 0;
+  gauge.style.transform = `scaleX(${1 - 0.2 * gaugeNum})`;
+  gauge.style.left = `${-24 * gaugeNum}px`;
+  countNum = 0;
+  count.textContent = countNum;
+  showIcon(startBtn);
 }
 
 startBtn.addEventListener('click', () => {
   // 처음 4개 뿌리기, 타이머 세팅
   startGame(TIME_LIMIT);
-  const scatterInterval = setInterval(() => {
-    if (GAUGE_NUM === 5) {
+  let scatterInterval = setInterval(() => {
+    if (gaugeNum === 5) {
       clearInterval(scatterInterval);
       clearTimeout(timeOutKey);
       removeAllIcons();
-      show(popUpBox);
+      showIcon(popUpBox);
+      bgSound.pause();
+      popUpSound.play();
     } else {
       scatterIcons();
     }
-  }, 2500);
+  }, 2000);
   const timeOutKey = setTimeout(() => {
+    bgSound.pause();
+    popUpSound.play();
     clearInterval(scatterInterval);
     removeAllIcons();
-    show(popUpBox);
+    showIcon(popUpBox);
   }, TIME_LIMIT * 1000);
+
+  // let paused = false;
+  // pauseBtn.addEventListener('click', () => {
+  //   !paused;
+  //   if (paused) {
+  //     clearInterval(scatterInterval);
+  //   } else {
+  //     scatterInterval = setInterval(() => {
+  //       if (gaugeNum === 5) {
+  //         clearInterval(scatterInterval);
+  //         clearTimeout(timeOutKey);
+  //         removeAllIcons();
+  //         showIcon(popUpBox);
+  //         bgSound.pause();
+  //         popUpSound.play();
+  //       } else {
+  //         scatterIcons();
+  //       }
+  //     }, 2000);
+  //   }
+  // });
 });
 
 reStartBtn.addEventListener('click', () => {
-  hide(popUpBox);
-  reset();
+  hideIcon(popUpBox);
+  resetGame();
   startBtn.click();
 });
 /*
