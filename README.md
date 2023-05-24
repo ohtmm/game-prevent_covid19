@@ -1,3 +1,7 @@
+<img width="1098" alt="스크린샷 2023-05-24 오후 4 36 53" src="https://github.com/ohtmm/game-prevent_covid19/assets/108715216/438b296d-1ec4-4177-9405-5af786466964">
+
+
+
 # game-prevent_covid19
 - 순수 Javascript로 제작 
 - team: 김은지(UI 디자인), 최지영(기획/개발) 
@@ -12,6 +16,8 @@
   - 잘못된 에티켓 이미지 선택 시 게이지 감소 및 올바른 에티켓 알림
   
 ## How to play
+
+<img width="1098" alt="스크린샷 2023-05-24 오후 4 37 43" src="https://github.com/ohtmm/game-prevent_covid19/assets/108715216/a90ebcb4-826f-4e19-9174-4bacb83a4f10">
 
 1. 게임 단계로 들어서기 전, 게임을 즐기고 싶은 시간을 입력합니다.
 2. START 버튼을 누르면 해당 시간 동안 게임이 진행됩니다.
